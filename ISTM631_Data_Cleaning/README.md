@@ -1,10 +1,9 @@
 # ISTM 631 – Data Cleaning Using Python
 
 **Course:** ISTM 631 – Business Analytics Programming  
-**Project:** Data Pre-processing and Cleaning (Project 2)  
-**Team Members:** Yisi Lu, Kenny Lei, Alex Fan  
+**Project:** Data Pre-processing and Cleaning
 **Dataset:** Cafe Sales Dataset (Kaggle)  
-**Tools:** Python, pandas, NumPy
+**Tools:** Python
 
 ---
 
