@@ -1,0 +1,95 @@
+# -*- coding: utf-8 -*- 
+"""
+Created on Sun Mar 28 13:07:13 2025
+
+Project 2 - Data Pre-processing and Data Cleaning
+
+Author: Yiyang Lei, Yisi Lu, Alex Fan
+
+Course: ISTM 631
+
+Purpose: This script cleans the cafe sales dataset by applying 8 distinct data cleaning steps.
+         The cleaned dataset is then used to create visualizations for further 
+         exploratory data analysis (EDA).
+        
+Description: This script reads the cafe sales dataset and applies multiple cleaning steps,
+             including removing duplicates, converting data types, standardize string values, 
+             formatting dates, dropping rows with invalid dates, replacing values in a column
+             with new calculated value and resetting the index.
+             It generates a business metric plot aftering cleaning, showing total sales by payment method,
+             using plotting command built in the pandas library.
+"""
+
+
+# Import required libraries
+import pandas as pd
+import numpy as np
+
+# Check the current working dictionary
+import os
+os.getcwd()
+
+# Load the dataset
+df = pd.read_csv("dirty_cafe_sales.csv")
+
+# ==== Data Cleaning ====
+# Check if there is null data in the orginal dataset
+print("Original dataset information:", df.info())
+
+# Step 1: Check and remove duplicate rows
+print(df.duplicated())
+df.drop_duplicates(inplace=True)
+# print(df.to_string())
+# print(df.info())
+
+# Step 2: Convert numeric columns properly for further analysis
+df['Quantity'] = pd.to_numeric(df['Quantity'], errors='coerce')
+df['Price Per Unit'] = pd.to_numeric(df['Price Per Unit'], errors='coerce')
+df['Total Spent'] = pd.to_numeric(df['Total Spent'], errors='coerce')
+print(df.info())
+
+# Step 3: Fill missing numerical values with median
+df['Quantity'].fillna(df['Quantity'].median(), inplace=True)
+df['Price Per Unit'].fillna(df['Price Per Unit'].median(), inplace=True)
+df['Total Spent'].fillna(df['Total Spent'].median(), inplace=True)
+
+# Fill missing categorical columns with mode
+df['Item'].fillna(df['Item'].mode()[0], inplace=True)
+df['Payment Method'].fillna(df['Payment Method'].mode()[0], inplace=True)
+df['Location'].fillna(df['Location'].mode()[0], inplace=True)
+print(df.info())
+
+# Step 4: Strip and standardize text values
+df['Item'] = df['Item'].str.title().str.strip()
+df['Payment Method'] = df['Payment Method'].str.title().str.strip()
+df['Location'] = df['Location'].str.title().str.strip()
+
+# Step 5: Convert Transaction Date to datetime
+df['Transaction Date'] = pd.to_datetime(df['Transaction Date'], errors='coerce')
+
+# Step 6: Drop rows with invalid dates
+df = df.dropna(subset=['Transaction Date'])
+print(df.info())
+
+# Step 7: Create a new column, recalculate total spent where needed and drop the original total
+df['Expected Total'] = df['Quantity'] * df['Price Per Unit']
+wrong_total = np.abs(df['Expected Total'] - df['Total Spent']) > 1
+df.loc[wrong_total, 'Total Spent'] = df['Expected Total']
+df.drop(columns='Expected Total', inplace=True)
+# Final shape after cleaning
+print("Cleaned dataset information:", df.info())
+
+# Step 8: Reset the index after cleaning to ensure it's sequential
+df.reset_index(drop=True, inplace=True)
+print(df.info())
+
+# Export the cleaned dataset
+df.to_csv('CleanedCafeSales.csv',index=False)
+print("File saved at:", os.path.abspath("CleanedCafeSales.csv"))
+
+
+# ==== Plotting ====
+# Plot total sales by payment method using pandas plot
+plot_df = df.groupby('Payment Method')['Total Spent'].sum().sort_values()
+ax = plot_df.plot(kind='barh', figsize=(10, 4), title="Total Sales by Payment Method", xlabel="Payment Method", ylabel="Total Sales", legend=False)
+ax.bar_label(ax.containers[0], fmt='%.0f', label_type='edge')
