@@ -1,6 +1,6 @@
 # ISTM 624 – Kaggle Dataset Project
 
-**Course:** ISTM 624 – Predictive Analytics  
+**Course:** ISTM 624 – Databases and Big Data Management
 **Project:** Kaggle Dataset Project
 
 ## 🧾 Project Description
