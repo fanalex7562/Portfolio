@@ -10,6 +10,13 @@ A group project in which you will explore the use of data sets used in data anal
 ### 🔍 Project Requirements
 
 - Explore **3 Kaggle datasets** of interest ([Kaggle.com](https://www.kaggle.com/))
+
+- Data Set 1: Linear Regression
+https://www.kaggle.com/datasets/himelsarder/coffee-shop-daily-revenue-prediction-dataset
+- Data Set 2: Decision Tree
+https://www.kaggle.com/datasets/gabrielsantello/advertisement-click-on-ad
+- Data Set 3: Clustering
+https://www.kaggle.com/datasets/ybifoundation/food-app-business
   
 For each dataset:
 - Explain **why this dataset is interesting**
