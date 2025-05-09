@@ -27,7 +27,7 @@ For each dataset:
 - SQL
 - R
 
-## 📎 Folder Contents (to be added)
+## 📎 Folder Contents
 
 - `whitepaper.pdf`
 - 'kaggle_presentation.pdf'
