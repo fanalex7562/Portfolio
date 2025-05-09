@@ -14,6 +14,8 @@ Each folder below contains project-specific documentation, code, reports, and pr
 | [Data Cleaning](./ISTM631_Data_Cleaning) | ISTM 631 | Python, pandas, Excel             | Cleaned and transformed a raw café dataset using 8 cleaning steps and visualized the output. |
 | [Kaggle Dataset Analysis](./ISTM624_Kaggle_Dataset_Project) | ISTM 624 | SQL, R, RapidMiner                | Analyzed 3 datasets (sales, advertising, customer behavior) and built predictive models. |
 | [Monte Carlo Simulation](./DESC626_Monte_Carlo_Simulation) | DESC 626 | Excel, Monte Carlo, Solver        | Simulated NVIDIA stock performance using GBM to inform financial decision-making. |
+| [Predictive Modeling](./ISTM660_Predictive_Modeling) | ISTM 660 | BigQuery, Google Collab, SQL, Python, Tableau        | Analyzed CPS dataset and looked for insights on the characteristics of self-employed individuals. |
+
 
 ---
 
