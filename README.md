@@ -6,7 +6,7 @@ Each folder below contains project-specific documentation, code, reports, and pr
 
 ---
 
-## 📂 Projects
+## 📂 School Projects
 
 | Project Title                            | Course        | Tools Used                        | Description                                                                 |
 |------------------------------------------|---------------|------------------------------------|-----------------------------------------------------------------------------|
@@ -16,6 +16,10 @@ Each folder below contains project-specific documentation, code, reports, and pr
 | [Monte Carlo Simulation](./DESC626_Monte_Carlo_Simulation) | DESC 626 | Excel, Monte Carlo, Solver        | Simulated NVIDIA stock performance using GBM to inform financial decision-making. |
 | [Predictive Modeling](./ISTM660_Predictive_Modeling) | ISTM 660 | BigQuery, Google Collab, SQL, Python, Tableau        | Analyzed CPS dataset and looked for insights on the characteristics of self-employed individuals. |
 
+## 📂 Personal Projects
+
+| Project Title                            | Tools Used                        | Description                                                                 |
+To be added
 
 ---
 
