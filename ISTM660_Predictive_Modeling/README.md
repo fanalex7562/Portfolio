@@ -41,7 +41,7 @@ This project focused on using predictive modeling to understand how household st
 - **SHAP Analysis:** Age had the strongest predictive impact, followed by married and ownchild
 
 ### 4. 🎭 Dashboard & Visual Insights
-- Built using **Streamlit** and **Plotly**
+- Built using **Plotly**
 - Variable-level analysis (age, marriage, children, household head) with logistic regression overlays and interpretability notes
 - Dashboard allows interaction by selecting different predictors
 - Self-employment percentages, logistic coefficients, and model accuracy shown live
