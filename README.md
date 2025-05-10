@@ -6,7 +6,7 @@ Each folder below contains project-specific documentation, code, reports, and pr
 
 ---
 
-## 📂 School Projects
+## 📂 Pepperdine MS in Business Analytics Projects
 
 | Project Title                            | Course        | Tools Used                        | Description                                                                 |
 |------------------------------------------|---------------|------------------------------------|-----------------------------------------------------------------------------|
@@ -18,7 +18,6 @@ Each folder below contains project-specific documentation, code, reports, and pr
 
 ## 📂 Personal Projects
 
-| Project Title                            | Tools Used                        | Description                                                                 |
 To be added
 
 ---
