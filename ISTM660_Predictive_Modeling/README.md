@@ -76,9 +76,9 @@ For targeting potential entrepreneurs, the SBA should focus on:
 | `Final Data Analysis Report.pdf`           | Detailed write-up and model interpretation |
 | `Final Data Analysis Presentation.pdf`     | Slide deck for 20-minute oral presentation |
 | `hhdSit_dataCleaning.txt`                  | Python code for data import and cleaning   |
-| `hhdSit_logReg.txt`                        | Logistic regression and ROC analysis       |
-| `hhdSit_dashboard(runInPrompt).txt`        | Streamlit dashboard implementation         |
-| `README.md`                                | This file – documentation overview         |
+| `hhdSit_logReg.txt`                        | Python code for Logistic regression       |
+| `hhdSit_dashboard(runInPrompt).txt`        | Dashboard implementation         |
+
 
 ---
 
