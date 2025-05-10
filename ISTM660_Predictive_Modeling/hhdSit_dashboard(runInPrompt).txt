@@ -1,0 +1,96 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Apr 14 20:07:14 2025
+
+@author: Yedda
+"""
+
+import pandas as pd
+import streamlit as st
+import plotly.express as px
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report, confusion_matrix
+import plotly.figure_factory as ff
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Title
+st.title('Self-Employment Dashboard')
+
+# Load Data
+@st.cache_data
+def load_data():
+    df = pd.read_csv('household_situation.csv')
+    return df
+
+df = load_data()
+independent_vars = [
+    'age', 'ch05', 'married', 'hhnum', 'ch613', 'ch1417', 'hoh79', 'ownchild'
+]
+dependent_var = 'self_employment'
+
+# Sidebar for variable selection
+st.sidebar.header('Independent Variable')
+selected_var = st.sidebar.selectbox('Choose a variable to analyze:', [
+    'age', 'ch05', 'married', 'hhnum', 'ch613', 'ch1417', 'hoh79', 'ownchild'
+])
+
+# Visualization: Distribution plot
+st.subheader(f'Distribution of {selected_var}')
+fig = px.histogram(df, x=selected_var, color=dependent_var, barmode='group')
+st.plotly_chart(fig, use_container_width=True)
+
+# Calculate and display percentages of self-employed and non-self-employed
+st.subheader('Percentage of Self-Employed vs Non-Self-Employed')
+self_employed_count = df[dependent_var].value_counts(normalize=True) * 100
+st.write(f"Self-Employed: {self_employed_count.get(1, 0):.2f}%")
+st.write(f"Not Self-Employed: {self_employed_count.get(0, 0):.2f}%")
+
+# Logistic Regression Analysis
+st.subheader('Logistic Regression Analysis')
+
+# Prepare X and y
+X = df[[selected_var]].fillna(0)
+y = df[dependent_var]
+
+# Model Training
+model = LogisticRegression()
+model.fit(X, y)
+y_pred = model.predict(X)
+
+# Show Classification Report
+st.text('Classification Report')
+report = classification_report(y, y_pred)
+st.text(report)
+
+# Confusion Matrix Visualization
+cm = confusion_matrix(y, y_pred)
+cm_fig = ff.create_annotated_heatmap(
+    cm, x=['Not Self-Employed', 'Self-Employed'],
+    y=['Not Self-Employed', 'Self-Employed'],
+    colorscale='Blues'
+)
+st.plotly_chart(cm_fig, use_container_width=True)
+
+# Line graph of logistic regression coefficient (showing how the variable affects the model)
+st.subheader(f'Logistic Regression Coefficient for {selected_var}')
+coeff = model.coef_[0][0]
+st.write(f'Logistic Regression Coefficient: {coeff:.4f}')
+
+# Visualizing Logistic Regression Coefficient as a line graph (assuming other variables as baseline)
+fig, ax = plt.subplots(figsize=(8, 5))
+ax.plot([0, 1], [0, coeff], marker='o')
+ax.set_title(f'Logistic Regression Coefficient Trend: {selected_var}')
+ax.set_xlabel(f'{selected_var}')
+ax.set_ylabel('Coefficient Value')
+ax.text(0.5, coeff/2, f'Coefficient: {coeff:.4f}', horizontalalignment='center', fontsize=12, color='red')
+st.pyplot(fig)
+
+# Explanation of line graph (add explanatory annotation under the graph)
+st.markdown("""
+### Explanation of the Logistic Regression Coefficient:
+- The **logistic regression coefficient** represents the influence of the selected independent variable on the likelihood of being self-employed.
+- A positive coefficient indicates that as the variable increases, the likelihood of being self-employed also increases, while a negative coefficient suggests the opposite.
+- The value of the coefficient quantifies this relationship, showing how much the log-odds of being self-employed change with a unit increase in the selected variable.
+""")
+
